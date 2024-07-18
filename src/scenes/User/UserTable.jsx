@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from "react";
+
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
@@ -9,6 +11,7 @@ import Header from "../../components/Header";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+import axios from "axios";
 
 // Preprocess the role data to include fullName
 const role = originalRole.map((user) => ({
@@ -20,6 +23,8 @@ const UserTable = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   //   console.log("role of user ", role);
+
+  const [users, setUsers] = useState([]);
 
   const columns = [
     { field: "id", headerName: "ID" },
@@ -85,6 +90,16 @@ const UserTable = () => {
       },
     },
   ];
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/user/getAllUsers")
+      .then((res) => {
+        console.log("users : " + res.data.users);
+        setUsers(res.data.users); 
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <Box m="20px">

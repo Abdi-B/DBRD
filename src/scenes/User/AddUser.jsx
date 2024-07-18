@@ -12,12 +12,40 @@ import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import React from "react";
+import axios from 'axios';
 
 const AddUser = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
-  const handleFormSubmit = (values) => {
+  const handleFormSubmit = async (values, { resetForm }) => {
     console.log(values);
+
+    const { firstName, lastName, email, password, confirmPassword, role } = values;
+
+    try {
+      const response = await axios.post('http://localhost:3001/auth/user', {
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword,
+        role
+      });
+      console.log('New user is created:', response.data);
+
+      const token = response.data.token;
+
+      // Store the token in localStorage or sessionStorage
+      localStorage.setItem('token', token);
+
+      // update the auth context
+      // dispatch({type: 'LOGIN', payload: token})
+
+      // Reset the form values
+      resetForm();
+    } catch (error) {
+      console.error('Error creating user:', error);
+    }
   };
 
   const roles = ["superAdmin", "admin", "user"];
@@ -62,6 +90,7 @@ const AddUser = () => {
           handleBlur,
           handleChange,
           handleSubmit,
+          resetForm,
         }) => (
           <form onSubmit={handleSubmit}>
             <Box

@@ -30,13 +30,13 @@ export default function BooksTable() {
 
   const rows = books.map((book, index) => ({
     id: index + 1, // Ensure unique IDs starting from 1
-    // category: book.category,
-    // title: book.title,
-    // author: book.author,
-    // sharedBy: book.sharedBy || "", // Provide a default value if sharedBy is missing
-    // size: book.size / 1000,
-    // createdAt: book.createdAt.substring(0, 10),
-    ...book, 
+    category: book.category,
+    title: book.title,
+    author: book.author,
+    sharedBy: book.sharedBy || "", // Provide a default value if sharedBy is missing
+    size: book.size / 1000,
+    createdAt: book.createdAt.substring(0, 10),
+    // ...book, 
   }));
 
   const handleAddNewBook = () => {
@@ -52,7 +52,6 @@ export default function BooksTable() {
     if (window.confirm("Are you sure you want to save?")) {
       // Logic to save the editedBook data, e.g., sending it to the server
       console.log("Saved book:", editedBook);
-
       setBooks((prevBooks) =>
         prevBooks.map((book) => (book.id === editedBook.id ? editedBook : book))
       );

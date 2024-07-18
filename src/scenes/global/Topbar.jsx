@@ -6,12 +6,14 @@ import NotificationModeOutlinedIcon from "@mui/icons-material/NotificationsOutli
 import SettingsModeOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonModeOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import { Box, IconButton, InputBase, useTheme } from "@mui/material";
+import { Box, Button, IconButton, InputBase, useTheme } from "@mui/material";
 import { ColorModeContext, tokens } from "../../theme";
+// import { useAuth } from "../../context/AuthContext";
 
 // const styledBox = styled(Box)``;
 
 const Topbar = () => {
+  // const { logout } = useAuth();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
@@ -54,6 +56,11 @@ const Topbar = () => {
         <IconButton>
           <PersonModeOutlinedIcon />
         </IconButton>
+        {/* <Button onClick={logout()}>Logout</Button> */}
+        {/* <Button 
+        sx={{
+          color: colors.grey[200]
+        }}>Logout</Button> */}
       </Box>
     </Box>
   );

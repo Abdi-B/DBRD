@@ -69,11 +69,11 @@ const CoopLibrary = () => {
         <Box
           sx={{
             width: "100%",
-            // marginY: 5,
+            margin: "2px",
             display: "flex",
             flexDirection: "row",
             flexWrap: "wrap",
-            justifyContent: "space-between",
+            // justifyContent: "space-between",
             // backgroundColor: 'gray'
           }}
         >
@@ -89,7 +89,7 @@ const CoopLibrary = () => {
                 className=""
                 sx={{
                   width: isMobile ? "100%" : isTablet ? "45%" : "32%",
-                  m: "5px 0",
+                  m: "5px ",
                   backgroundColor: colors.primary[900],
                 }}
               >
