@@ -67,4 +67,5 @@ const ProtectedRoute = ({element: Component, ...rest}) => {
   return token ? <Component {...rest} /> : <Navigate to="/login" />;
 };
 
+
 export default ProtectedRoute;
