@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationModeOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
@@ -8,16 +7,21 @@ import PersonModeOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, Button, IconButton, InputBase, useTheme } from "@mui/material";
 import { ColorModeContext, tokens } from "../../theme";
-// import { useAuth } from "../../context/AuthContext";
-
-// const styledBox = styled(Box)``;
+import { AuthContext } from "../../context/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
 
 const Topbar = () => {
-  // const { logout } = useAuth();
+  const { setToken } = useContext(AuthContext);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
-  // console.log("colorMode : " + colorMode);
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken(null);
+    navigate("/login");
+  };
 
   return (
     <Box
@@ -56,11 +60,9 @@ const Topbar = () => {
         <IconButton>
           <PersonModeOutlinedIcon />
         </IconButton>
-        {/* <Button onClick={logout()}>Logout</Button> */}
-        {/* <Button 
-        sx={{
-          color: colors.grey[200]
-        }}>Logout</Button> */}
+        <Button variant="" onClick={logout}>
+          Logout
+        </Button>
       </Box>
     </Box>
   );

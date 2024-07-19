@@ -126,8 +126,8 @@ const Sidebar = () => {
       minHeight="100vh"
       height="auto"
       overflow="auto"
-      mr="5px"
-      minWidth={isCollapsed ? undefined : "200px"}
+      mr="3px"
+      minWidth={isCollapsed ? undefined : "220px"}
     >
       <ProSidebarProvider collapsed={isCollapsed}>
         <Menu iconShape="square">
@@ -191,7 +191,6 @@ const Sidebar = () => {
                         )}
                       </Box>
                     )}
-
                   </Box>
                 </MenuItem>
                 <Collapse
