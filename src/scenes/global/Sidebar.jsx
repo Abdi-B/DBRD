@@ -116,7 +116,6 @@ const Sidebar = () => {
   const uniqueSubDepartment = [
     ...new Set(subFile.map((book) => book.subDepartment)),
   ];
-  //
 
   // console.log("uniqueSubDepartment " + uniqueSubDepartment);
 

@@ -29,7 +29,6 @@ function App() {
   const [theme, colorMode] = useMode();
   const [token, setToken] = useState(localStorage.getItem("token"));
 
-  
   return (
     <AuthContext.Provider value={{ token, setToken }}>
       <Router>
@@ -90,7 +89,10 @@ function App() {
                         path="/faq"
                         element={<ProtectedRoute element={FAQ} />}
                       />
-                      <Route path="*" element={<Navigate to={token ? "/" : "/login"} />} />
+                      <Route
+                        path="*"
+                        element={<Navigate to={token ? "/" : "/login"} />}
+                      />
                     </>
                   )}
                 </Routes>
