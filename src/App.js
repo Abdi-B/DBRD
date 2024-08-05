@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
@@ -22,7 +17,6 @@ import FAQ from "./scenes/faq";
 import Calendar from "./scenes/calendar";
 import Announcement from "./scenes/Announcement/Announcement";
 import Login from "./scenes/User/Login";
-import ProtectedRoute from "./Route/protectedRoute";
 import { AuthContext } from "./context/AuthContext";
 
 function App() {
@@ -45,54 +39,25 @@ function App() {
                 {token && <Topbar />}
                 <Routes>
                   {!token ? (
-                    <Route path="/login" element={<Login />} />
+                    <> 
+                    
+                      <Route path="/login" element={<Login />} />
+                      <Route path="*" element={<Navigate to="/login" />} />
+                    </>
                   ) : (
                     <>
                       <Route exact path="/" element={<Dashboard />} />
-                      <Route
-                        path="/file/:item/:item2"
-                        element={<ProtectedRoute element={DepartmentFile} />}
-                      />
-                      <Route
-                        path="/userform"
-                        element={<ProtectedRoute element={AddUser} />}
-                      />
-                      <Route
-                        path="/user"
-                        element={<ProtectedRoute element={UserTable} />}
-                      />
-                      <Route
-                        path="/books"
-                        element={<ProtectedRoute element={BooksTable} />}
-                      />
-                      <Route
-                        path="/addBook"
-                        element={<ProtectedRoute element={AddBook} />}
-                      />
-                      <Route
-                        path="/coopLibrary"
-                        element={<ProtectedRoute element={CoopLibrary} />}
-                      />
-                      <Route
-                        path="/files"
-                        element={<ProtectedRoute element={FileTable} />}
-                      />
-                      <Route
-                        path="/calendar"
-                        element={<ProtectedRoute element={Calendar} />}
-                      />
-                      <Route
-                        path="/announcement"
-                        element={<ProtectedRoute element={Announcement} />}
-                      />
-                      <Route
-                        path="/faq"
-                        element={<ProtectedRoute element={FAQ} />}
-                      />
-                      <Route
-                        path="*"
-                        element={<Navigate to={token ? "/" : "/login"} />}
-                      />
+                      <Route path="/file/:item/:item2" element={<DepartmentFile />} />
+                      <Route path="/userform" element={<AddUser />} />
+                      <Route path="/user" element={<UserTable />} />
+                      <Route path="/books" element={<BooksTable />} />
+                      <Route path="/addBook" element={<AddBook />} />
+                      <Route path="/coopLibrary" element={<CoopLibrary />} />
+                      <Route path="/files" element={<FileTable />} />
+                      <Route path="/calendar" element={<Calendar />} />
+                      <Route path="/announcement" element={<Announcement />} />
+                      <Route path="/faq" element={<FAQ />} />
+                      <Route path="*" element={<Navigate to="/" />} />
                     </>
                   )}
                 </Routes>

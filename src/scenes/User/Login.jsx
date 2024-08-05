@@ -20,8 +20,11 @@ import { useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import { AuthContext } from "../../context/AuthContext";
 
+
 const Login = () => {
+
   const { setToken } = useContext(AuthContext);
+  
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
@@ -43,6 +46,7 @@ const Login = () => {
           email,
           password,
         });
+        // const data = response.data;
 
         const token = response.data.token;
         setToken(token);
